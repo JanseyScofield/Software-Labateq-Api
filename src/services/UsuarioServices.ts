@@ -15,4 +15,5 @@ async function create(novoUsuario : any) : Promise<any>{
     }
 }
 
+
 export {create};
