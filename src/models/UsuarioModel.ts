@@ -27,7 +27,7 @@ const Usuario = database.define('Usuario',{
         allowNull : false
     },
     Senha : {
-        type : STRING(10),
+        type : STRING(150),
         allowNull : false
     }
 });
