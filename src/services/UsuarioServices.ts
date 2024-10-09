@@ -1,5 +1,6 @@
 import { database } from "database/database";
 import { Usuario } from "models/UsuarioModel";
+
 const bcrypt = require('bcrypt');
 
 async function create(novoUsuario : any) : Promise<any>{
@@ -11,7 +12,10 @@ async function create(novoUsuario : any) : Promise<any>{
         await Usuario.create(novoUsuario);
         return {usuarioCadastrado : novoUsuario, senhaTemporaria : senha};
     }
-    catch(e){
+    catch(e : any){
+        if(e.name === 'SequelizeUniqueConstraintError'){
+            e.message =  "Esses dados foram cadastados anteriormente."
+        }
         throw new Error((e as Error).message);
     }
 }
